@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Marks and GPA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #9b9797;
+            border-radius: 5px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+            border:1px
+        }
+        .grid label {
+            align-self: center;
+        }
+        .grid input {
+            padding: 5px;
+            font-size: 14px;
+        }
+        .grid button {
+            grid-column: span 2;
+            padding: 10px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .grid button:hover {
+            background-color: #0e58c7;
+        }
+        .table-container {
+            display: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="grid-heading">Subjects Marks</h2>
+        <div class="grid">
+            <label for="subject1">Subject 1:</label>
+            <input type="number" id="subject1" name="subject1" required>
+            <label for="subject2">Subject 2:</label>
+            <input type="number" id="subject2" name="subject2" required>
+            <label for="subject3">Subject 3:</label>
+            <input type="number" id="subject3" name="subject3" required>
+            <label for="subject4">Subject 4:</label>
+            <input type="number" id="subject4" name="subject4" required>
+            <button type="button" onclick="calculateGPA()">Submit</button>
+        </div>
+        <div class="table-container">
+            <h2>Subjects Marks and GPA</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Subject 1</td>
+                        <td id="mark1"></td>
+                    </tr>
+                    <tr>
+                        <td>Subject 2</td>
+                        <td id="mark2"></td>
+                    </tr>
+                    <tr>
+                        <td>Subject 3</td>
+                        <td id="mark3"></td>
+                    </tr>
+                    <tr>
+                        <td>Subject 4</td>
+                        <td id="mark4"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Overall GPA: <span id="gpa"></span></h3>
+        </div>
+    </div>
+
+    <script>
+        function calculateGPA() {
+         
+            let mark1 = parseInt(document.getElementById('subject1').value);
+            let mark2 = parseInt(document.getElementById('subject2').value);
+            let mark3 = parseInt(document.getElementById('subject3').value);
+            let mark4 = parseInt(document.getElementById('subject4').value);
+     
+            let gpa = ((mark1 + mark2 + mark3 + mark4) / 4).toFixed(2);
+            
+            document.getElementById('mark1').textContent = mark1;
+            document.getElementById('mark2').textContent = mark2;
+            document.getElementById('mark3').textContent = mark3;
+            document.getElementById('mark4').textContent = mark4;
+            document.getElementById('gpa').textContent = gpa;
+
+            document.querySelector('.grid').style.display = 'none';
+            document.getElementById('grid-heading').style.display = 'none';
+            document.querySelector('.table-container').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
